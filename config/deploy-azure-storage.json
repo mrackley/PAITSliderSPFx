@@ -1,0 +1,6 @@
+{
+  "workingDir": "./temp/deploy/",
+  "account": "<!-- STORAGE ACCOUNT NAME -->",
+  "container": "pait-slider-sp-fx",
+  "accessKey": "<!-- ACCESS KEY -->"
+}
