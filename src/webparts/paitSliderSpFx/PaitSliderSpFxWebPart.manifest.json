@@ -1,25 +1,20 @@
 {
   "$schema": "../../../node_modules/@microsoft/sp-module-interfaces/lib/manifestSchemas/jsonSchemas/clientSideComponentManifestSchema.json",
 
-  "id": "c93b1975-437d-4f41-abf4-6307841097fd",
+  "id": "9c24c370-7b94-485f-a490-44601123c121",
   "alias": "PaitSliderSpFxWebPart",
   "componentType": "WebPart",
   "version": "0.0.1",
   "manifestVersion": 2,
 
   "preconfiguredEntries": [{
-    "groupId": "c93b1975-437d-4f41-abf4-6307841097fd",
+    "groupId": "9c24c370-7b94-485f-a490-44601123c121",
     "group": { "default": "Under Development" },
-    "title": { "default": "PAITSliderSPFx" },
-    "description": { "default": "Turn a Promted Links list in SharePoint into a Content Slider with Unslider" },
+    "title": { "default": "PaitSliderSpFx" },
+    "description": { "default": "PaitSliderSpFx description" },
     "officeFabricIconFontName": "Page",
     "properties": {
-      "ListName": "PromotedLinks",
-      "ViewName": "All Promoted Links",
-      "CustomCSS": "",
-      "Next": ">",
-      "Previous": "<",
-      "Arrows": true
+      "description": "PaitSliderSpFx"
     }
   }]
 }

@@ -1,27 +1,25 @@
+import { Version } from '@microsoft/sp-core-library';
 import {
   BaseClientSideWebPart,
-  IPropertyPaneSettings,
-  IWebPartContext,
+  IPropertyPaneConfiguration,
   PropertyPaneTextField,
   PropertyPaneCheckbox
 } from '@microsoft/sp-webpart-base';
+import { escape } from '@microsoft/sp-lodash-subset';
+
+import {PageContext} from '@microsoft/sp-page-context';
 
 declare var jQuery;
+import 'jquery';  
+
 
 import styles from './PaitSliderSpFx.module.scss';
-
 import * as strings from 'paitSliderSpFxStrings';
 import { IPaitSliderSpFxWebPartProps } from './IPaitSliderSpFxWebPartProps';
-import 'jquery';  
-import ModuleLoader from '@microsoft/sp-module-loader';
 
 export default class PaitSliderSpFxWebPart extends BaseClientSideWebPart<IPaitSliderSpFxWebPartProps> {
 
-  public constructor(context: IWebPartContext) {
-    super(context);
-  }
-
-  public render(): void {      
+  public render(): void {
       require('./unslider-min');
       require('./PAITSlider');
 
@@ -37,7 +35,7 @@ export default class PaitSliderSpFxWebPart extends BaseClientSideWebPart<IPaitSl
         <div class="PAITSlider"><ul id="PAITSlides"></ul></div>
       </div>`;
 
-      jQuery().PAITSlider({
+ jQuery().PAITSlider({
         listName:  this.properties.ListName, //name of Promoted Links list to use for slides
 		    viewTitle: this.properties.ViewName, //name of the view to use
         prev: this.properties.Previous, //HTML for the previous arrow
@@ -48,13 +46,16 @@ export default class PaitSliderSpFxWebPart extends BaseClientSideWebPart<IPaitSl
 		arrows: this.properties.Arrows,
 		dots: true,
 		keys: true,
-		delay: 3000		
-		
-    });
-
+		delay: 3000,
+    url: this.context.pageContext.site.absoluteUrl
+    });      
   }
 
-  protected get propertyPaneSettings(): IPropertyPaneSettings {
+  protected get dataVersion(): Version {
+    return Version.parse('1.0');
+  }
+
+  protected getPropertyPaneConfiguration(): IPropertyPaneConfiguration {
     return {
       pages: [
         {
@@ -79,7 +80,7 @@ export default class PaitSliderSpFxWebPart extends BaseClientSideWebPart<IPaitSl
                 }),
                 PropertyPaneCheckbox('Arrows',{
                   text: strings.ArrowsFieldLabel, 
-                  isChecked: true
+                  checked: true
                 }),
                 PropertyPaneTextField('CustomCSS', {
                   label: strings.CustomCSSFieldLabel, 
@@ -96,4 +97,5 @@ export default class PaitSliderSpFxWebPart extends BaseClientSideWebPart<IPaitSl
    protected get disableReactivePropertyChanges(): boolean {
     return true;
   }
+  
 }

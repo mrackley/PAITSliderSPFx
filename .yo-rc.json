@@ -1,7 +1,8 @@
 {
   "@microsoft/generator-sharepoint": {
     "libraryName": "pait-slider-sp-fx",
-    "libraryId": "12963f10-f9dd-4bc1-8290-c8d535b521d7",
-    "framework": "none"
+    "framework": "none",
+    "version": "1.0.0",
+    "libraryId": "06728033-544b-4459-a8fd-50cc1d330053"
   }
 }

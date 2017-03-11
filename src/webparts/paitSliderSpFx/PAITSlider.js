@@ -30,10 +30,11 @@ $.fn.PAITSlider= function (options)
 		arrows: true,
 		dots: true,
 		keys: true,
-		delay: 5000					
+		delay: 5000,
+		url: null					
     }, options);
 
-		 var url = _spPageContextInfo.webAbsoluteUrl + "/_api/web/lists/getByTitle('" + opt.listName + "')/Views/getbytitle('" + opt.viewTitle + "')";
+		 var url = opt.url + "/_api/web/lists/getByTitle('" + opt.listName + "')/Views/getbytitle('" + opt.viewTitle + "')";
 		var call = $.ajax({
 			url: url,
 			type: "GET",
@@ -45,7 +46,7 @@ $.fn.PAITSlider= function (options)
 		call.done(function (data,textStatus, jqXHR){
 			var viewQuery = data.d.ViewQuery;
 			var viewXml = '<View><Query>' + viewQuery + '</Query></View>';
-			var url = _spPageContextInfo.webAbsoluteUrl + "/_api/web/lists/getbytitle('" + opt.listName + "')/getitems"; 
+			var url = opt.url + "/_api/web/lists/getbytitle('" + opt.listName + "')/getitems"; 
 			var query = {  
 				'query' : {
 					'__metadata': { 'type': 'SP.CamlQuery' }, 
@@ -54,7 +55,7 @@ $.fn.PAITSlider= function (options)
 			};
 
 			var getDigestCall = $.ajax({
-				url: _spPageContextInfo.webAbsoluteUrl + '/_api/contextinfo',
+				url: opt.url + '/_api/contextinfo',
 				method: "POST",
 				headers: { "Accept": "application/json; odata=verbose" }
 			})
